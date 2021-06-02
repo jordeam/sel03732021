@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Devices list </title>
+{% endblock %}
+
+{% block body %}
+<h1> Devices List Page </h1>
+    {% for r in devices %}
+        <h2> Name: {{ r.title }} </h2>      
+        <h3> Description: {{ r.content }} </h3>
+        {%if r.owner %}
+        <h3> Owner: {{ r.owner }} </h3>
+        {% else %}
+        <h3> Owner unknown </h3>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

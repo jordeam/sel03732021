@@ -1,0 +1,14 @@
+body {
+    font-family: Courier;
+    background-color: lightblue;
+    width: 800px;
+    margin-left: 200px;
+}
+h1 {
+    background-color: blue;
+    position: fixed;
+    margin-left: 400px;
+}
+h2 {
+    color: yellow;
+}
