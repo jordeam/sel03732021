@@ -30,7 +30,7 @@ def main():
 def devices():
     con = sqlite3.connect('data.db')
     cur = con.cursor()
-    rows = cur.execute('SELECT id,name,value,date(date_create),time(date_create),owner FROM devices')
+    rows = cur.execute('SELECT d.id,d.name,d.value,date(date_create),time(date_create),u.name FROM devices as d,users as u WHERE u.id = owner AND u.id = 1')
     return render_template('devices.html', devices=rows)
 
 if __name__ == '__main__':

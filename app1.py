@@ -30,9 +30,11 @@ app = Flask('__name__')
 @app.route('/')
 def index():
     return '''
-<h1> Hello there! </h1>
+<h1> Hello there!!! </h1>
 <p> Another line </p>
+<p> <a href="/devices"> Acesse Devices Aqui</a></p>
 '''
+
 # Uses a simple template, with no variable content
 @app.route('/device')
 def device():
