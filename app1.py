@@ -15,6 +15,11 @@ devices_all = [
      'content': 'Contents of device 1'
     },
     {
+     'title': 'Device 3',
+     'owner': 'Someone',
+     'content': 'Contents of device 3'
+    },
+    {
      'title': 'Devices 2',
      'content': 'Contents of device 2'
     },
@@ -26,19 +31,20 @@ app = Flask('__name__')
 def index():
     return '''
 <h1> Hello there! </h1>
+<p> Another line </p>
 '''
 # Uses a simple template, with no variable content
 @app.route('/device')
 def device():
     return render_template('device.html')
 
-@app.route('/main')
-def main():
-    return render_template('index.html')
+@app.route('/main/<string:s>')
+def main(s):
+    return render_template('index.html', s=s)
 
 @app.route('/devices')
 def posts():
-    return render_template('devices.html', devices=devices_all)
+    return render_template('devices_old.html', devices=devices_all)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5000, debug=True)
