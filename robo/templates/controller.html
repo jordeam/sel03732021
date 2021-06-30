@@ -52,7 +52,7 @@ body
 				<div id="joy1Div" style="width:200px;height:200px;margin:50px"></div>
 				X :<input id="joy1X" type="text" /></br>
 				Y :<input id="joy1Y" type="text" /><br />
-				Direction:<input id="joy1Direzione" type="text" />			
+				Direction:<input id="joy1Direction" type="text" />			
 			</div>
 
 			<div class="columnCentral">
@@ -66,15 +66,14 @@ Joystick to control the robot remotely. Gives [X, Y] coordinates and direction o
 // Create JoyStick object into the DIV 'joy1Div'
 var Joy1 = new JoyStick('joy1Div');
 
-var joy1IinputPosX = document.getElementById("joy1PosizioneX");
-var joy1InputPosY = document.getElementById("joy1PosizioneY");
-var joy1Direzione = document.getElementById("joy1Direzione");
+var joy1IinputPosX = document.getElementById("joy1PositionX");
+var joy1InputPosY = document.getElementById("joy1PositionY");
+var joy1Direction = document.getElementById("joy1Direction");
 var joy1X = document.getElementById("joy1X");
 var joy1Y = document.getElementById("joy1Y");
 
-setInterval(function(){ joy1IinputPosX.value=Joy1.GetPosX(); }, 10);
-setInterval(function(){ joy1InputPosY.value=Joy1.GetPosY(); }, 10);
-setInterval(function(){ joy1Direzione.value=Joy1.GetDir(); }, 10);
+
+setInterval(function(){ joy1Direction.value=Joy1.GetDir(); }, 10);
 setInterval(function(){ joy1X.value=Joy1.GetX(); }, 10);
 setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 10);
 		</script>
