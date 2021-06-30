@@ -1,0 +1,19 @@
+body {
+    font-family: Helvetica;
+    padding:20px;
+    width: 800px;
+    margin-left: 100px;
+}
+h1 {
+    font-family: courier;
+    color: blue;
+    background-color: lightcyan;
+    position: absolute;
+    margin-left: 300pt;
+}
+h2 {
+    font-family: Sans;
+    font-style: bold;
+    font-size: 18pt;
+    background-color:blanchedalmond;
+}

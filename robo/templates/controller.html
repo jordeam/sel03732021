@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Joystick</title>
+<style>
+*
+{
+	box-sizing: border-box;
+}
+body
+{
+	margin: 0px;
+	padding: 0px;
+	font-family: monospace;
+}
+.row
+{
+	display: inline-flex;
+	clear: both;
+}
+.columnLateral
+{
+  float: left;
+  width: 15%;
+  min-width: 300px;
+}
+.columnCetral
+{
+  float: left;
+  width: 70%;
+  min-width: 300px;
+}
+#joystick
+{
+	border: 1px solid #FF0000;
+}
+		</style>
+	</style>
+
+	<script src="{{url_for('static', filename='js/joy.js')}}"></script>
+</head>
+<body>
+	<h1>Testing Joystick Controller</h1>
+		</style>
+		<script src="{{url_for('static', filename='js/joy.js')}}"></script>
+	</head>
+	<body>
+		<!-- Example of two JoyStick integrated in the page structure -->
+		<div class="row">
+			<div class="columnCentral">
+				<div id="joy1Div" style="width:200px;height:200px;margin:50px"></div>
+				X :<input id="joy1X" type="text" /></br>
+				Y :<input id="joy1Y" type="text" /><br />
+				Direction:<input id="joy1Direzione" type="text" />			
+			</div>
+
+			<div class="columnCentral">
+				<h2>JoyStick</h2>
+				<p>
+Joystick to control the robot remotely. Gives [X, Y] coordinates and direction of movement. The robot won't start moving until the cursor reaches a minimum distance from the center, as shown by the direction of the movement (0 = no movement direction).<br /><br />
+				</p>
+			</div>
+
+		<script type="text/javascript">
+// Create JoyStick object into the DIV 'joy1Div'
+var Joy1 = new JoyStick('joy1Div');
+
+var joy1IinputPosX = document.getElementById("joy1PosizioneX");
+var joy1InputPosY = document.getElementById("joy1PosizioneY");
+var joy1Direzione = document.getElementById("joy1Direzione");
+var joy1X = document.getElementById("joy1X");
+var joy1Y = document.getElementById("joy1Y");
+
+setInterval(function(){ joy1IinputPosX.value=Joy1.GetPosX(); }, 10);
+setInterval(function(){ joy1InputPosY.value=Joy1.GetPosY(); }, 10);
+setInterval(function(){ joy1Direzione.value=Joy1.GetDir(); }, 10);
+setInterval(function(){ joy1X.value=Joy1.GetX(); }, 10);
+setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 10);
+		</script>
+</body>
+</html>
