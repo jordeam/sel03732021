@@ -6,6 +6,7 @@ Created on Mon May 31 13:59:55 2021
 @author: jrm
 """
 
+
 from flask import Flask, render_template, url_for, request, jsonify
 
 from flask_socketio import SocketIO, emit, send
@@ -22,11 +23,14 @@ import re
 
 @io.on('get_input')
 def get_input_handler(msg):
-    print(type(msg))
+    #print(type(msg))
+    
+    print(" \n\n\n\n\n\n\n\n\n")
+
     print(msg)
     print(int(msg['X']))
     print(int(msg['Y']))
-    print(msg['Dir'])
+    #print(msg['Dir'])
 
 
 

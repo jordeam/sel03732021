@@ -50,7 +50,7 @@
 	<div class="row">
 		<div class="columnCentral">
 			<div id="joy1Div" style="width:200px;height:200px;margin:50px"></div>
-			<form>
+			<form id="joy1Inputs">
 				X :<input id="joy1X" type="text" /></br>
 				Y :<input id="joy1Y" type="text" /><br />
 				Direction:<input id="joy1Direction" type="text" />
@@ -74,9 +74,9 @@
 		var joy1Y = document.getElementById("joy1Y");
 
 
-		setInterval(function(){ joy1Direction.value=Joy1.GetDir(); }, 10);
-		setInterval(function(){ joy1X.value=Joy1.GetX(); }, 10);
-		setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 10);
+		// setInterval(function(){ joy1Direction.value=Joy1.GetDir(); }, 10);
+		// setInterval(function(){ joy1X.value=Joy1.GetX(); }, 10);
+
 	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
@@ -88,15 +88,15 @@
                 socket.send('Usuário conectado ao socket!')
             });
 
-            document.querySelector("form").addEventListener("submit", function(event) {
-                event.preventDefault();
-
-                socket.emit('get_input', {X: event.target[0].value, Y: event.target[1].value, Dir: event.target[2].value})
-                event.target[0].value = "";
-                event.target[1].value = "";
-				event.target[2].value = "";
-            })
-
+			setInterval(function() {
+			var Dir = Joy1.GetDir()
+			var X = Joy1.GetX();
+			var Y = Joy1.GetY();
+			socket.emit('get_input', {X, Y});
+			joy1Y.value = Y;
+			joy1X.value = X;
+			joy1Direction.value = Dir
+		}, 10);
 
         }
 
