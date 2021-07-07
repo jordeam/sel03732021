@@ -18,10 +18,15 @@ io = SocketIO(app)
 def index():
     return render_template('controller.html')
 
+import re
 
 @io.on('get_input')
 def get_input_handler(msg):
+    print(type(msg))
     print(msg)
+    print(int(msg['X']))
+    print(int(msg['Y']))
+    print(msg['Dir'])
 
 
 
