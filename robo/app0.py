@@ -29,12 +29,11 @@ msg_antes = 0
 def get_input_handler(msg):
 
     global msg_antes
+    # roda apenas se a mensagem foi alterada 
     if msg_antes != msg:
-        print('Coordenadas')
-        print(msg)
+        print('Enviando coordenadas:\n',msg)
         msg_antes = msg
-
-
+        # emite o input para clients conectados
         sio.emit('robot_get_input', msg)
         
 
