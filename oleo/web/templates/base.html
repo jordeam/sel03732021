@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>Medidor de Óleo Wireless</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma-rtl.min.css" />
+</head>
+
+<body>
+    <section class="hero is-link is-halfheight is-bold" style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80'); background-size: cover;">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div id="navbarMenuHeroA" class="navbar-item">
+                        <div class="navbar-end">
+                            {% if current_user.is_authenticated %}
+                            <a href="profile" class="navbar-item">
+                               Dashboard
+                            </a>
+                            {% endif %}
+                            {% if not current_user.is_authenticated %}
+                            <a href="login" class="navbar-item">
+                                Login
+                            </a>
+                            <a href="signup" class="navbar-item">
+                                Cadastre-se
+                            </a>
+                            {% endif %}
+                            {% if current_user.is_authenticated %}
+                            <a href="logout" class="navbar-item">
+                                Logout
+                            </a>
+                            {% endif %}   
+                        </div>
+                    </div>
+                   </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+               {% block content %}
+               {% endblock %}
+            </div>
+        </div>
+    </section>
+    <section class ="hero">
+        <div class ="container">
+            <h1 class = "title has-text-centered">
+                Um Projeto de Medidor Inteligente via Wireless
+            </h1>
+        </div>
+    </section>
+    <section class ="hero-body">
+        <label>Chega de ter que sair da sua casa para monitorar equipamentos e medidores em sua loja ou oficina.</label>
+        <label>O universo em IoT vem para inovar a sua forma de gerenciar seu negócio.</label>
+        <label>Totalmente desenvolvido por alunos de Engenharia Elétrica da EESC-USP, oferecemos uma</label>
+        <label>forma eficiente,<s>segura</s>(vaga de analista de redes aberta) &#129313 e gratuita de controlar seus equipamentos à distância.</label>
+        <label>Código totalmente open-source :) e disponível no <a href="https://github.com/kenji-boy">GitHub</a></label>
+        <label>Se quiser dar uma proposta de emprego ou um ranguinho pelo Pix, aceitamos tmb ;)</label>
+    </section>
+    <p><h1 class = "title has-text-left">Pensa numa Equipe Incrível para sua Empresa...&#128512;</h1>
+    <center><br>
+    <div style="float:left; width:33%">
+    <div class="box">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-64x64">
+              <img class="is-rounded" src="https://pbs.twimg.com/profile_images/1282360106408120321/K_E3cXm0_400x400.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong>Rodrigo Kenji Yaly Aoki</strong> <small>Dev-Ops</small> 
+                <br>
+                Sim, o cara do VSCodes
+                <br>
+                <a href="https://www.linkedin.com/in/rodrigo-kenji-6338a5177/">&#128188</a>
+              </p>
+            </div>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
+      <div style="float:left; width:33%">
+        <div class="box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <img class="is-rounded" src="data:image/jpeg;base64,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" alt="Image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>Gustavo Simões Belote</strong> <small>Embedded System Hardware</small> 
+                    <br>
+                    Protocolo CAN,Free-RTOS e afins. A carta na manga de todo projeto.
+                    <br>
+                    <a href="https://www.linkedin.com/in/gustavo-sim%C3%B5es-belote-ba0706205/">&#128188</a>
+                  </p>
+                </div>
+                  </div>
+                </nav>
+              </div>
+            </article>
+          </div>
+    </div>
+    <div style="float:left; width:33%">
+        <div class="box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img class="is-rounded" src="https://uploaddeimagens.com.br/images/003/302/822/thumb/Captura_de_tela_de_2021-06-23_21-54-20.png?1624496072" alt="Image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>Gabriel F.Souza Garofa</strong> <small>Embedded System Hardware</small> 
+                    <br>
+                    Líder da Equipe.Inventor do Sanduíche de Bauru &#127790.
+                    <br>
+                    <a href="https://www.linkedin.com/in/gabriel-garofa-a69173195/">&#128188</a>
+                  </p>
+                </div>
+                  </div>
+                </nav>
+              </div>
+            </article>
+          </div>
+    </div>
+    </center></br>
+</body>
+
+</html>

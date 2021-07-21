@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Bem vindo, {{ name }}!
+</h1>
+<img src="video_feed">
+<div class="buttons is-centered">
+  <form action="abrir" method="post">
+  <button type="submit" class="button is-block is-primary is-info is-large is-hovered">Abrir</button>
+  </form>
+  <form action="fechar" method="post">
+  <button type="submit" class="button is-block is-info is-large ">Fechar</button>
+  </form>
+</div>
+{% endblock %}
