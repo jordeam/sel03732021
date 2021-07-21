@@ -10,14 +10,12 @@ except ImportError:
 
 
 class CameraEvent(object):
-    """An Event-like class that signals all active clients when a new frame is
-    available.
-    """
+    # Uma classe semelhante a um evento que sinaliza a todos os clientes ativos quando um novo quadro é acessível.
     def __init__(self):
         self.events = {}
 
     def wait(self):
-        """Invoked from each client's thread to wait for the next frame."""
+        # Invocado da thread dos clientes para esperar o novo quadro. 
         ident = get_ident()
         if ident not in self.events:
             # Este é um cliente novo
@@ -27,7 +25,7 @@ class CameraEvent(object):
         return self.events[ident][0].wait()
 
     def set(self):
-        """Invoked by the camera thread when a new frame is available."""
+        # Invocado pela thread da câmera quando um novo quadro esta disponível.
         now = time.time()
         remove = None
         for ident, event in self.events.items():
@@ -37,7 +35,7 @@ class CameraEvent(object):
                 event[0].set()
                 event[1] = now
             else:
-                # Se o client's event já está setado, significa que 
+                # Se o client's event já está setado, significa que
                 # ele não processou um frame anterior, e se
                 # o evento fica setado por mais que 5 segundos, o programa
                 # assume que o client não está presente e é removido
@@ -47,34 +45,34 @@ class CameraEvent(object):
             del self.events[remove]
 
     def clear(self):
-        """Invoked from each client's thread after a frame was processed."""
+        # Invoca a thread de cada cliente depois que o quadro for processado.
         self.events[get_ident()][0].clear()
 
 
 class BaseCamera(object):
-    thread = None  # background thread -> lê os frames da câmera 
-    frame = None  # current frame -> is stored here by background thread
-    last_access = 0  # time of last client access to the camera
+    thread = None  # background thread -> lê os frames da câmera. 
+    frame = None  # current frame -> está armazenado aqui pela background thread.
+    last_access = 0  # horário em que houve o último acesso do cliente à câmera.
     event = CameraEvent()
 
     def __init__(self):
-        """Start the background camera thread if it isn't running yet."""
+        # Inicia a thread da câmera de fundo, se ainda não estiver em execução.
         if BaseCamera.thread is None:
             BaseCamera.last_access = time.time()
 
-            # start background frame thread
+            # Inicia o quadro da background thread.
             BaseCamera.thread = threading.Thread(target=self._thread)
             BaseCamera.thread.start()
 
-            # wait until frames are available
+            # Espera até que os quadros estejam disponível. 
             while self.get_frame() is None:
                 time.sleep(0)
 
     def get_frame(self):
-        """Return the current camera frame."""
+        # Retorna o quadro atual da câmera.
         BaseCamera.last_access = time.time()
 
-        # wait for a signal from the camera thread
+        # Espera pelo sinal da thread da câmera.
         BaseCamera.event.wait()
         BaseCamera.event.clear()
 
@@ -82,21 +80,20 @@ class BaseCamera(object):
 
     @staticmethod
     def frames():
-        """"Generator that returns frames from the camera."""
+        # Gerador que retorna os quadros da câmera. 
         raise RuntimeError('Must be implemented by subclasses.')
 
     @classmethod
     def _thread(cls):
-        """Camera background thread."""
+        # Background thread câmera.
         print('Starting camera thread.')
         frames_iterator = cls.frames()
         for frame in frames_iterator:
             BaseCamera.frame = frame
-            BaseCamera.event.set()  # send signal to clients
+            BaseCamera.event.set()  # Envie o sinal para os clientes.
             time.sleep(0)
 
-            # if there hasn't been any clients asking for frames in
-            # the last 10 seconds then stop the thread
+            # Se não houver clientes requisitando quadros nos últimos 10 segundos então para a thread
             if time.time() - BaseCamera.last_access > 10:
                 frames_iterator.close()
                 print('Stopping camera thread due to inactivity.')
