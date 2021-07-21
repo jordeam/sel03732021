@@ -44,7 +44,7 @@ def list_data():
 def data(ids, dado):
     con = sqlite3.connect('data.db')
     cur = con.cursor()
-    cur.execute('INSERT INTO dados (ident,dado,insert_date) values (?,?,julianday(\'now\'))', (ids,dado))
+    cur.execute('INSERT INTO dados (ident,dado,insert_date) values (?,?,julianday(\'now\',\'localtime\'))', (ids,dado))
     # cur.execute('INSERT INTO dados (ident,dado) values (' + sqlite3.quote(ids) + ',' + sqlite3.quote(dado) +')')
     con.commit()
     con.close()
