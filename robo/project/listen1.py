@@ -12,7 +12,7 @@ def connect():
 
 @sio.event
 def connect_error(data):
-    print("Conecção falhou!!!")
+    print("Conexão falhou!!!")
 
 @sio.event
 def disconnect():
