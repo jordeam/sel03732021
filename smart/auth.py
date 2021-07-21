@@ -18,13 +18,13 @@ def login_post():
 
     user = User.query.filter_by(email=email).first()
 
-    # check if the user actually exists
-    # take the user-supplied password, hash it, and compare it to the hashed password in the database
+    # Verifica se o usuário realmente existe
+    # Pega a senha provida pelo usuário, encripta ela pelo 'hash', e compara com o valor em 'hash' do database
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
-        return redirect('login') # if the user doesn't exist or password is wrong, reload the page
+        return redirect('login') # Se o usuário não existe ou a senha está incorreta, recarrega a página
 
-    # if the above check passes, then we know the user has the right credentials
+    # Se a verificação acima é passada, então o usuário existe e colocou a senha correta
     login_user(user, remember=remember)
     return redirect('app-06/profile')
 
@@ -39,20 +39,20 @@ def signup_post():
     password = request.form.get('password')
     confirma= request.form.get('confirma')
 
-    user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
+    user = User.query.filter_by(email=email).first() # Se esta função retorna um usuário, significa que o email ja é cadastrado
 
-    if user: # if a user is found, we want to redirect back to signup page so user can try again
+    if user: # Se o usuário colocou um email já cadastrado, ele é redirecionado para a página de cadastramento novamente
 	    flash('E-mail já cadastrado, tente novamente!')
 	    return redirect('signup')
 
     #if password == confirma:
-        # create a new user with the form data. Hash the password so the plaintext version isn't saved.
+        # Cria um novo usuário com as credenciais adicionadas
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
     #else:
       #  flash('Senhas distintas, tente novamente!')
-     #   return redirect(url_for('auth.signup'))
+      #  return redirect(url_for('auth.signup'))
 
-    # add the new user to the database
+    # Adiciona o novo usuário na database
     db.session.add(new_user)
     db.session.commit()
 
