@@ -8,7 +8,7 @@ from flask_socketio import SocketIO, emit, send
 from engineio.payload import Payload
 
 
-Payload.max_decode_packets = 100
+Payload.max_decode_packets = 500
 
 app = Flask(__name__, template_folder='templates')
 sio = SocketIO(app)
