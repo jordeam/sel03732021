@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-# iniciando o SQLAlchemy para que possamos usá-lo mais tarde em nossos modelos 
+# Iniciando o SQLAlchemy para que possamos usá-lo mais tarde em nossos modelos 
 db = SQLAlchemy()
 
 def create_app():
