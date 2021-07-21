@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Listagem de Dados </title>
+{% endblock %}
+
+{% block body %}
+<h1> Dados </h1>
+    {% for r in dados %}
+        <h2> id: {{ r[0] }} </h2>      
+        <p> ESP: {{ r[1] }} </p>
+        <p> Dado: {{ r[2] }} </p>
+    {% endfor %}
+{% endblock %}
