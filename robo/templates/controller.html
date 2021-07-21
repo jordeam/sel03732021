@@ -43,7 +43,7 @@
 <body>
 	<h1>Testing Joystick Controller</h1>
 	</style>
-	<script src="{{url_for('static', filename='js/joy.js')}}"></script>
+	<script src="{{url_for('static', filename='js/joy.min.js')}}"></script>
 
 
 	<div class="row">
@@ -52,6 +52,11 @@
 				X :<input id="joy1X" type="text" /></br>
 				Y :<input id="joy1Y" type="text" /><br />
 				Direction:<input id="joy1Direction" type="text" />
+
+			<div id="joy2Div" style="width:200px;height:200px;margin:50px"></div>
+				X :<input id="joy2X" type="text" /></br>
+				Y :<input id="joy2Y" type="text" /><br />
+				Direction:<input id="joy2Direction" type="text" />
 		</div>
 	</div>
 		<div class="columnCentral">
@@ -64,11 +69,14 @@
 	<script type="text/javascript">
 		// Create JoyStick object into the DIV 'joy1Div'
 		var Joy1 = new JoyStick('joy1Div');
-
 		var joy1Direction = document.getElementById("joy1Direction");
 		var joy1X = document.getElementById("joy1X");
 		var joy1Y = document.getElementById("joy1Y");
-
+		
+		var Joy2 = new JoyStick('joy2Div');
+		var joy2Direction = document.getElementById("joy2Direction");
+		var joy2X = document.getElementById("joy2X");
+		var joy2Y = document.getElementById("joy2Y");
 
 		// setInterval(function(){ joy1Direction.value=Joy1.GetDir(); }, 10);
 		// setInterval(function(){ joy1X.value=Joy1.GetX(); }, 10);
@@ -85,13 +93,22 @@
             });
 
 			setInterval(function() {
-			var Dir = Joy1.GetDir()
-			var X = Joy1.GetX();
-			var Y = Joy1.GetY();
-			socket.emit('get_input', {X, Y});
-			joy1Y.value = Y;
-			joy1X.value = X;
-			joy1Direction.value = Dir
+			var Dir1 = Joy1.GetDir()
+			var X1 = Joy1.GetX();
+			var Y1 = Joy1.GetY();
+			joy1Y.value = Y1;
+			joy1X.value = X1;
+			joy1Direction.value = Dir1
+
+			var Dir2 = Joy2.GetDir()
+			var X2 = Joy2.GetX();
+			var Y2 = Joy2.GetY();
+			joy2Y.value = Y2;
+			joy2X.value = X2;
+			joy2Direction.value = Dir2
+
+			socket.emit('get_input', {X1, Y1, X2, Y2});
+
 		}, 10);
 
         }
