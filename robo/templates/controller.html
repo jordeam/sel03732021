@@ -1,74 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "base.html" %} 
 
-	<title>Joystick</title>
+{% block content %}
 
-	<style>
-	*
-	{
-		box-sizing: border-box;
-	}
-	body
-	{
-		margin: 0px;
-		padding: 0px;
-		font-family: monospace;
-	}
-	.row
-	{
-		display: inline-flex;
-		clear: both;
-	}
-	.columnLateral
-	{
-	float: left;
-	width: 15%;
-	min-width: 300px;
-	}
-	.columnCetral
-	{
-	float: left;
-	width: 70%;
-	min-width: 300px;
-	}
-	#joystick
-	{
-		border: 1px solid #FF0000;
-	}
-	</style>
-
-
-</head>
 <body>
-	<h1>Testing Joystick Controller</h1>
-	</style>
+
 	<script src="{{url_for('static', filename='js/joy.min.js')}}"></script>
 
 
-	<div class="row">
+</div>
+
+
 		<div class="columnCentral">
 
-			<h2>Robo 1</h2>
-			<div id="joy1Div" style="width:200px;height:200px;margin:50px"></div>
-			X :<input id="joy1X" type="text" /></br>
-			Y :<input id="joy1Y" type="text" /><br />
-				Direction:<input id="joy1Direction" type="text" />
+			<h2>Controller 1</h2>
+			<div id="joy1Div" style="width:200px;height:200px;margin:50px"  ></div>
+			X :<input id="joy1X" type="text" maxlength="1" size="1" />
+			Y :<input id="joy1Y" type="text" maxlength="1" size="1" />
+			Direction:<input id="joy1Direction" type="text" maxlength="1" size="1" />
 			
-			<h2>Robo 2</h2>
+			<h2>Controller 2</h2>
 			<div id="joy2Div" style="width:200px;height:200px;margin:50px"></div>
-			X :<input id="joy2X" type="text" /></br>
-			Y :<input id="joy2Y" type="text" /><br />
-			Direction:<input id="joy2Direction" type="text" />
+			X :<input id="joy2X" type="text" maxlength="1" size="1" />
+			Y :<input id="joy2Y" type="text" maxlength="1" size="1" />
+			Direction:<input id="joy2Direction" type="text" maxlength="1" size="1" />
 		
 		</div>
-	</div>
-		<div class="columnCentral">
-			<h2>JoyStick</h2>
-			<p>
-			Joystick to control the robot remotely. Gives [X, Y] coordinates and direction of movement.<br /><br />
-			</p>
-		</div>
+
+
 
 	<script type="text/javascript">
 		// Create JoyStick object into the DIV 'joy1Div'
@@ -90,7 +48,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script>
         window.onload = function() {
-            const socket = io();
+            var socket = io.connect();
 
             socket.on('connect', () => {
                 socket.send('Usuário conectado ao socket!')
@@ -119,4 +77,6 @@
 
     </script>
 </body>
-</html>
+
+
+{% endblock %}
