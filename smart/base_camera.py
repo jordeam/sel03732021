@@ -20,9 +20,9 @@ class CameraEvent(object):
         """Invoked from each client's thread to wait for the next frame."""
         ident = get_ident()
         if ident not in self.events:
-            # this is a new client
-            # add an entry for it in the self.events dict
-            # each entry has two elements, a threading.Event() and a timestamp
+            # Este é um cliente novo
+            # Adiciona uma entrada no self.events dict
+            # Cada entrada possui dois elementos, threading.Event() e timestamp
             self.events[ident] = [threading.Event(), time.time()]
         return self.events[ident][0].wait()
 
@@ -32,15 +32,15 @@ class CameraEvent(object):
         remove = None
         for ident, event in self.events.items():
             if not event[0].isSet():
-                # if this client's event is not set, then set it
-                # also update the last set timestamp to now
+                # Se o client's event não está setado, seta ele
+                # Atualiza o timestamp
                 event[0].set()
                 event[1] = now
             else:
-                # if the client's event is already set, it means the client
-                # did not process a previous frame
-                # if the event stays set for more than 5 seconds, then assume
-                # the client is gone and remove it
+                # Se o client's event já está setado, significa que 
+                # ele não processou um frame anterior, e se
+                # o evento fica setado por mais que 5 segundos, o programa
+                # assume que o client não está presente e é removido
                 if now - event[1] > 5:
                     remove = ident
         if remove:
@@ -52,8 +52,8 @@ class CameraEvent(object):
 
 
 class BaseCamera(object):
-    thread = None  # background thread that reads frames from camera
-    frame = None  # current frame is stored here by background thread
+    thread = None  # background thread -> lê os frames da câmera 
+    frame = None  # current frame -> is stored here by background thread
     last_access = 0  # time of last client access to the camera
     event = CameraEvent()
 
