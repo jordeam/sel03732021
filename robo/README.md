@@ -40,7 +40,7 @@ Execute o script ```run_server.sh``` para abrir o servidor que hostea o *site*. 
 <br>
 
 Os *joysticks* são disponibilizados após realizar login no *site*.
-Pode-se usar o login padrao:
+Pode-se utilizar o login padrao:
 <br>
 ***Your email:*** asd@asd
 <br>
