@@ -36,9 +36,10 @@ Werkzeug         |  2.0.1
 ## Instruções:
 
 
-Execute o script ```run_server.sh``` para abrir o servidor que hostea o *site*. Este pode ser acessado pelo IP local da máquina. Os *joysticks* são disponibilizados após realizar login no *site*.
+Execute o script ```run_server.sh``` para abrir o servidor que hostea o *site*. Este pode ser acessado pelo IP local da máquina.
 <br>
 
+Os *joysticks* são disponibilizados após realizar login no *site*.
 Pode-se usar o login padrao:
 <br>
 ***Your email:*** asd@asd
