@@ -3,8 +3,11 @@ import socketio
 # standard Python
 sio = socketio.Client()
 
-server_ip = 'http://192.168.0.4:5000'
+#server_ip = 'http://192.168.0.4:5000'
 
+ip = input("Insira IP do server:\n")
+
+server_ip = 'http://' + ip + ':5000'
 
 @sio.event
 def connect():
