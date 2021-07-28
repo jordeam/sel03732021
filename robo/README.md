@@ -47,4 +47,4 @@ Pode-se utilizar o login padrao:
 ***Your password:*** asd
 <br>
 
-Execute os arquivos ```listener1.py``` e ```listener2.py``` para receber os comandos roteados pelo servidor. Ao executar o arquivo, insira o IP onde o servidor está sendo hosteado.
+Execute os arquivos ```listen1.py``` e ```listen2.py``` para receber os comandos roteados pelo servidor. Ao executar o arquivo, insira o IP onde o servidor está sendo hosteado.
