@@ -36,7 +36,7 @@ Werkzeug         |  2.0.1
 ## Instruções:
 
 
-Execute o script ```run_server.sh``` para abrir o servidor hosteando o site . O site com os *joysticks* pode ser acessado pelo IP local da máquina.
+Execute o script ```run_server.sh``` para abrir o servidor que hostea o *site*. Este pode ser acessado pelo IP local da máquina. Os *joysticks* são disponibilizados após realizar login no *site*.
 <br>
 
 Pode-se usar o login padrao:
@@ -46,4 +46,4 @@ Pode-se usar o login padrao:
 ***Your password:*** asd
 <br>
 
-Execute os arquivos ```listener1.py``` e ```listener2.py``` para receber os comandos enviados pelo server. Ao executar o arquivo, insira o IP onde o servidor está sendo hosteado.
+Execute os arquivos ```listener1.py``` e ```listener2.py``` para receber os comandos roteados pelo servidor. Ao executar o arquivo, insira o IP onde o servidor está sendo hosteado.
