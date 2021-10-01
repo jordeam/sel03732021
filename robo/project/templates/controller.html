@@ -1,0 +1,82 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<body>
+
+	<script src="{{url_for('static', filename='js/joy.min.js')}}"></script>
+
+
+</div>
+
+
+		<div class="columnCentral">
+
+			<h2>Controller 1</h2>
+			<div id="joy1Div" style="width:200px;height:200px;margin:50px"  ></div>
+			X :<input id="joy1X" type="text" maxlength="1" size="1" />
+			Y :<input id="joy1Y" type="text" maxlength="1" size="1" />
+			Direction:<input id="joy1Direction" type="text" maxlength="1" size="1" />
+			
+			<h2>Controller 2</h2>
+			<div id="joy2Div" style="width:200px;height:200px;margin:50px"></div>
+			X :<input id="joy2X" type="text" maxlength="1" size="1" />
+			Y :<input id="joy2Y" type="text" maxlength="1" size="1" />
+			Direction:<input id="joy2Direction" type="text" maxlength="1" size="1" />
+		
+		</div>
+
+
+
+	<script type="text/javascript">
+		// Create JoyStick object into the DIV 'joy1Div'
+		var Joy1 = new JoyStick('joy1Div');
+		var joy1Direction = document.getElementById("joy1Direction");
+		var joy1X = document.getElementById("joy1X");
+		var joy1Y = document.getElementById("joy1Y");
+		
+		var Joy2 = new JoyStick('joy2Div');
+		var joy2Direction = document.getElementById("joy2Direction");
+		var joy2X = document.getElementById("joy2X");
+		var joy2Y = document.getElementById("joy2Y");
+
+		// setInterval(function(){ joy1Direction.value=Joy1.GetDir(); }, 10);
+		// setInterval(function(){ joy1X.value=Joy1.GetX(); }, 10);
+
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        window.onload = function() {
+            var socket = io.connect();
+
+            socket.on('connect', () => {
+                socket.send('Usuário conectado ao socket!')
+            });
+
+			setInterval(function() {
+			var Dir1 = Joy1.GetDir()
+			var X1 = Joy1.GetX();
+			var Y1 = Joy1.GetY();
+			joy1Y.value = Y1;
+			joy1X.value = X1;
+			joy1Direction.value = Dir1
+
+			var Dir2 = Joy2.GetDir()
+			var X2 = Joy2.GetX();
+			var Y2 = Joy2.GetY();
+			joy2Y.value = Y2;
+			joy2X.value = X2;
+			joy2Direction.value = Dir2
+
+			socket.emit('get_input', {X1, Y1, X2, Y2});
+
+		}, 10);
+
+        }
+
+    </script>
+</body>
+
+
+{% endblock %}
